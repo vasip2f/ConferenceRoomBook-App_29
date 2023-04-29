@@ -23,7 +23,7 @@ function Login() {
     localStorage.setItem("objectId", objectId)
 
     axios
-      .post("https://conference-room-booking.onrender.com", data)
+      .post("https://conference-room-booking.onrender.com/user/login", data)
       .then((res) => {
         alert("Login Success")
         console.log(res);
