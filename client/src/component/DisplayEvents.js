@@ -72,7 +72,7 @@ export default function () {
 
 
     useEffect(() => {
-        axios.get('https://conference-room-booking.onrender.com')
+        axios.get('https://conference-room-booking.onrender.com/get-events')
             .then((d) => {
                 const cdata = d.data.map(item => {
                     return { username: item.username, title: item.title, date: item.StartTime }
