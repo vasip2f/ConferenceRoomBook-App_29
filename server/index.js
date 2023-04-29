@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-app.use(cors());
 const bodyParser = require("body-parser");
 const InitiateMongoServer = require("./config/db");
 const user = require("./router/user");
@@ -20,8 +19,9 @@ app.use('/',EventTimeSlotRoute)
 const corsOptions = {
   origin:"https://conference-room-booking-fnd.onrender.com"
 }
-app.use(bodyParser.json());
 app.use(cors(corsOptions));
+app.use(bodyParser.json());
+
 
 // PORT
 const PORT = 4000;
