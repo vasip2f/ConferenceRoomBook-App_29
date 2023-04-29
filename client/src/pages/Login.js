@@ -8,7 +8,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [objectId, setObjectId] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate("https://conference-room-booking.onrender.com");
+  const navigate = useNavigate();
 
   // login function with api
   function handleSubmit(event) {
@@ -32,7 +32,7 @@ function Login() {
         localStorage.setItem('objectId', JSON.stringify(res.data.user['_id']))
         // const objectId = res.data.user._id;
         // localStorage.setItem("objectId",objectId);
-        navigate("/Dashboard");
+        navigate("/dashboard");
       })
       .catch((err) => {
         alert("Login Fail invalid credientials")
