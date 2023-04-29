@@ -24,7 +24,7 @@ function Dashboard() {
     <div>
       <NavbarOne />
       <div className='text-center'>
-        <Link to="https://conference-room-booking.onrender.com/Calendar">
+        <Link to="/Calendar">
           <Button style={{ backgroundColor: 'skyblue' }}><i className='fa fa-plu'></i>𝐁𝐨𝐨𝐤 𝐘𝐨𝐮𝐫 𝐑𝐨𝐨𝐦</Button>
         </Link>
         <DisplayEvents />
