@@ -74,7 +74,7 @@ function NavbarOne() {
            
             <p>Welcome : {localStorage.getItem("email")}</p>
             <li>
-              <NavLink to="/calendar" className="block py-2 pr-4 pl-3  bg-blue-700 rounded md:bg-transparent text-black md:p-0 dark:text-white" aria-current="page">
+              <NavLink to="/Calendar" className="block py-2 pr-4 pl-3  bg-blue-700 rounded md:bg-transparent text-black md:p-0 dark:text-white" aria-current="page">
 
                 <FontAwesomeIcon icon={faCalendar} >Calendar</FontAwesomeIcon>
               </NavLink>
