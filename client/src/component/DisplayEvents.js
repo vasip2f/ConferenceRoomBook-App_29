@@ -90,7 +90,7 @@ export default function () {
     //this api Display Event 
 
     useEffect(() => {
-        axios.get('https://conference-room-booking.onrender.com')
+        axios.get('https://conference-room-booking.onrender.com/get-events')
             .then((d) => {
                 setEventData(d.data)
             })
