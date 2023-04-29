@@ -58,6 +58,17 @@ const GetEventRoute = async (req, res) => {
     }
 };
 
+//Get Dashboard details
+
+const GetDashboardRoute = async(req, res) => {
+    try {
+        const events = await Event.find();
+        res.send(events)
+    } catch (error) {
+        res.status(500).send(err);
+    }
+};
+
 
 
 // const GetUserEvent = async (req, res) => {
@@ -140,7 +151,7 @@ const DeleteEvent = async (req, res) => {
     }
 };
 
-module.exports = { CreateEvent, GetEventRoute, GetUserEvent, DeleteEvent, UpdateEvent, };
+module.exports = { CreateEvent,GetDashboardRoute, GetEventRoute, GetUserEvent, DeleteEvent, UpdateEvent, };
 
 
 
