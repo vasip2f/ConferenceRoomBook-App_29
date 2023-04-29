@@ -92,9 +92,9 @@ export default function (props) {
     }
     const config = { headers: { "Content-Type": "application/json" } }
     try {
-      await axios.post('http://localhost:4000/create-event', payload, config);
+      await axios.post('https://conference-room-booking.onrender.com', payload, config);
       alert("Event is Confirmed");
-      window.location.reload();
+      // window.location.reload();
     } catch (e) {
       if (e.response.status === 409) {
         alert("The slot is already booked");
@@ -107,7 +107,7 @@ export default function (props) {
 
   //Calendar Display
   useEffect(() => {
-    axios.get('http://localhost:4000/get-events')
+    axios.get('https://conference-room-booking.onrender.com')
       .then((d) => {
         const cdata = d.data.map(item => {
           return { username: item.username, title: item.title, date: item.StartTime, EndTime: item.EndTime, User: item.User }
@@ -133,7 +133,7 @@ export default function (props) {
     const myString = objectId.replace(/^"(.*)"$/, '$1');
     console.log("Hello wolld")
     console.log(myString)
-    axios.get(`http://localhost:4000/getuserevent/${myString}`)
+    axios.get(`https://conference-room-booking.onrender.com/${myString}`)
       .then((d) => {
         setEventData(d.data.events)
         console.log(d)
@@ -142,12 +142,10 @@ export default function (props) {
       .catch((e) => { console.log(e) })
   }, [])
 
-  
-
   //Update the Event
   const handleEdit = () => {
     const Credentials = { title, roomName, StartTime, EndTime, availability }
-    axios.put(`http://localhost:4000/update-event/${id}`, Credentials)
+    axios.put(`https://conference-room-booking.onrender.com/${id}`, Credentials)
       .then((d) => {
 
         setData(d.data)
@@ -161,7 +159,7 @@ export default function (props) {
 
   const handleDelete = () => {
 
-    axios.delete(`http://localhost:4000/delete-event/${id}`)
+    axios.delete(`https://conference-room-booking.onrender.com/${id}`)
       .then((d) => {
         setData(d.data)
       })
