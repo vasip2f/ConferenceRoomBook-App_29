@@ -92,7 +92,7 @@ export default function (props) {
     }
     const config = { headers: { "Content-Type": "application/json" } }
     try {
-      await axios.post('https://conference-room-booking.onrender.com', payload, config);
+      await axios.post('https://conference-room-booking.onrender.com/create-event', payload, config);
       alert("Event is Confirmed");
       // window.location.reload();
     } catch (e) {
@@ -107,7 +107,7 @@ export default function (props) {
 
   //Calendar Display
   useEffect(() => {
-    axios.get('https://conference-room-booking.onrender.com')
+    axios.get('https://conference-room-booking.onrender.com/get-events')
       .then((d) => {
         const cdata = d.data.map(item => {
           return { username: item.username, title: item.title, date: item.StartTime, EndTime: item.EndTime, User: item.User }
@@ -133,7 +133,7 @@ export default function (props) {
     const myString = objectId.replace(/^"(.*)"$/, '$1');
     console.log("Hello wolld")
     console.log(myString)
-    axios.get(`https://conference-room-booking.onrender.com/${myString}`)
+    axios.get(`https://conference-room-booking.onrender.com/getuserevent/${myString}`)
       .then((d) => {
         setEventData(d.data.events)
         console.log(d)
@@ -145,7 +145,7 @@ export default function (props) {
   //Update the Event
   const handleEdit = () => {
     const Credentials = { title, roomName, StartTime, EndTime, availability }
-    axios.put(`https://conference-room-booking.onrender.com/${id}`, Credentials)
+    axios.put(`https://conference-room-booking.onrender.com/update-event/${id}`, Credentials)
       .then((d) => {
 
         setData(d.data)
@@ -159,7 +159,7 @@ export default function (props) {
 
   const handleDelete = () => {
 
-    axios.delete(`https://conference-room-booking.onrender.com/${id}`)
+    axios.delete(`https://conference-room-booking.onrender.com/delete-event/${id}`)
       .then((d) => {
         setData(d.data)
       })

@@ -32,7 +32,7 @@ function Login() {
         localStorage.setItem('objectId', JSON.stringify(res.data.user['_id']))
         // const objectId = res.data.user._id;
         // localStorage.setItem("objectId",objectId);
-        navigate("/Dashboard");
+        navigate("https://conference-room-booking.onrender.com/Dashboard");
       })
       .catch((err) => {
         alert("Login Fail invalid credientials")
