@@ -7,7 +7,7 @@ const user = require("./router/user");
 InitiateMongoServer();
 app.use(express.json());
 const EventRoute = require('./router/EventRoutes');
-app.use('/', EventRoute);
+app.use('/', cors(corsOptions), EventRoute);
 const EventTimeSlotRoute = require('./router/EventTimeSlotRoute');
 app.use('/',EventTimeSlotRoute)
 
