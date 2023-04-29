@@ -18,7 +18,7 @@ app.use('/',EventTimeSlotRoute)
 
 // middleware
 const corsOptions = {
-  origin:"http://localhost:3000"
+  origin:"https://conference-room-booking-fnd.onrender.com"
 }
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
