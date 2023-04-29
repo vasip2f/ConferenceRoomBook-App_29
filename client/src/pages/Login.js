@@ -8,7 +8,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [objectId, setObjectId] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useNavigate("https://conference-room-booking.onrender.com");
 
   // login function with api
   function handleSubmit(event) {
