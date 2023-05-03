@@ -118,6 +118,26 @@ const GetUserEvent = async (req, res) => {
 
 
 // Update an event by ID
+// const UpdateEvent = async (req, res) => {
+//     const updates = Object.keys(req.body);
+//     const allowedUpdates = ['username', 'title', 'roomName', 'StartTime', 'EndTime', 'availability'];
+//     const isValidOperation = updates.every(update => allowedUpdates.includes(update));
+//     if (!isValidOperation) {
+//         return res.status(400).send({ error: 'Invalid updates!' });
+//     }
+//     try {
+//         const event = await Event.findById(req.params.id);
+//         if (!event) {
+//             return res.status(404).send();
+//         }
+//         updates.forEach(update => event[update] = req.body[update]);
+//         await event.save();
+//         res.send(event);
+//     } catch (err) {
+//         res.status(400).send(err);
+//     }
+// };
+
 const UpdateEvent = async (req, res) => {
     const updates = Object.keys(req.body);
     const allowedUpdates = ['username', 'title', 'roomName', 'StartTime', 'EndTime', 'availability'];
@@ -130,7 +150,14 @@ const UpdateEvent = async (req, res) => {
         if (!event) {
             return res.status(404).send();
         }
-        updates.forEach(update => event[update] = req.body[update]);
+        updates.forEach(update => {
+            if (update === 'StartTime' || update === 'EndTime') {
+                // Convert to IST timezone
+                event[update] = moment.tz(req.body[update], 'YYYY-MM-DD HH:mm:ss', 'UTC').tz('Asia/Kolkata').format('YYYY-MM-DD HH:mm:ss');
+            } else {
+                event[update] = req.body[update];
+            }
+        });
         await event.save();
         res.send(event);
     } catch (err) {

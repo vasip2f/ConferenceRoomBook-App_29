@@ -143,8 +143,15 @@ export default function (props) {
   }, [])
 
   //Update the Event
-  const handleEdit = () => {
-    const Credentials = { title, roomName, StartTime, EndTime, availability }
+  const handleEdit = (e) => {
+    e.preventDefault();
+    const Credentials = {
+      title,
+      roomName,
+      StartTime: moment(StartTime).tz('Asia/Kolkata').format(),
+      EndTime: moment(EndTime).tz('Asia/Kolkata').format(),
+      availability
+    }
     axios.put(`https://conference-room-booking.onrender.com/update-event/${id}`, Credentials)
       .then((d) => {
 
@@ -463,11 +470,11 @@ export default function (props) {
             keyboard={false}
           >
             <Modal.Header closeButton>
-              <Modal.Title>Update Your Conference Meeting</Modal.Title>
+              <Modal.Title>Book Your Conference Meeting</Modal.Title>
 
             </Modal.Header>
             <Modal.Body>
-              <div>
+              <form onSubmit={handleEdit}>
                 <div className='form-group'>
                   <lable>Title</lable>
                   <input
@@ -478,6 +485,7 @@ export default function (props) {
                     style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '3px', marginBottom: '15px' }}
                   />
 
+                  {/* <input type='text' className='form-control' required='Enter your Title' value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Please Enter your Title' defaultValue={RowData.title} /> */}
                 </div>
 
                 <div>
@@ -493,6 +501,15 @@ export default function (props) {
                     <option value="Booth One">Booth One</option>
                     <option value="Booth Two">Booth Two</option>
                   </select>
+                  {/* <div className='form-group mt-3'>
+                                    <label style={{ color: "blue" }}>Select your Room</label>
+                                    <select placeholder="Select Room" required='please Select a room' value={roomName}  onChange={e => setroomName(e.target.value)} defaultValue={RowData.roomName}>
+                                        <option>Big Room</option>
+                                        <option>Small Room</option>
+                                        <option>Booth One</option>
+                                        <option>Booth Two</option>
+                                    </select>
+                                </div> */}
                 </div>
                 <div>
                   <div className='form-group mt-3'>
@@ -518,8 +535,8 @@ export default function (props) {
                     {/* <Datetime type='text' required="end time is missing" className='form-control' value={EndTime} onChange={(e) => setEndTime(e)} placeholder='Event End Time' defaultValue={RowData.EndTime} /> */}
                   </div>
                 </div>
-                <Button type='submit' style={{ backgroundColor: 'skyblue' }} className='btn btn-warning mt-4' onClick={handleEdit}>Update</Button>
-              </div>
+                <Button type='submit' style={{ backgroundColor: 'skyblue' }} className='btn btn-warning mt-4'>Update</Button>
+              </form>
             </Modal.Body>
             <Modal.Footer>
               <Button variant='secondary' className='text-black' style={{ backgroundColor: 'gray' }} onClick={handleEditClose}>Close</Button>
