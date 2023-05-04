@@ -25,7 +25,7 @@ app.use('/', cors(corsOptions), EventRoute);
 
 
 // PORT
-const PORT = 4000;
+const PORT = corsOptions;
 
 app.get("/", (req, res) => {
   res.json({ message: "API Working" });
