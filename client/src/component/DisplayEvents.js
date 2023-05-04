@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import "./App.css";
+import "../App.css";
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPligin from '@fullcalendar/timegrid';
